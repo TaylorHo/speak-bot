@@ -1,34 +1,31 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Simple Command Voice</title>
-  </head>
-  <body>
-    <p id="output"></p>
-    <button id="start">Click and say something!</button>
-    <script>
-      (() => {
-        const startBtn = document.querySelector('#start');
-        const output = document.querySelector('#output');
-        function start() {
-          const recognition = new webkitSpeechRecognition();
-          recognition.interimResults = true;
-          recognition.lang = "pt-BR";
-          recognition.continuous = true;
-          recognition.start();
-          // This event happens when you talk in the microphone
-          recognition.onresult = function(event) {
-            for (let i = event.resultIndex; i < event.results.length; i++) {
-              if (event.results[i].isFinal) {
-                // Here you can get the string of what you told
-                const content = event.results[i][0].transcript.trim();
-                output.textContent = content;
-              }
-            }
-          };
-        };
-        startBtn.addEventListener('click', () => start());
-      })();
-    </script>
-  </body>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Reconhecimento de Voz</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+
+    <div class="conteiner">
+
+        <h1>Busca por voz</h1>
+
+        <div class="search">
+            
+            <button id="speakbt">Buscar</button>
+
+            <div id="resultSpeak">Retorno</div>
+
+        </div>
+
+    </div>
+
+    <script src="busca.js" async></script>
+</body>
+
 </html>
